@@ -46,40 +46,52 @@ time.sleep(6)
 x = 100000000
 i = 0
 
-while True:
-    # Click on anti-spam button when it appears
-    try:
-        anti_spam_button = driver.find_element(
-            By.XPATH,
-            "/html/body/div[2]/div[2]/div[1]/div[3]/div[2]/div/div/form/div[2]/button",
-        )
-        anti_spam_button.click()
+while i < x:
+    try: 
+ 
+        time.sleep(1)
 
-        # For each 40 messages sent, wait 5 seconds
-        if (i % 40) == 0:
+        # Click on anti-spam button when it appears
+        try:
+            anti_spam_button = driver.find_element(
+                By.XPATH,
+                "/html/body/div[2]/div[2]/div[1]/div[3]/div[2]/div/div/form/div[2]/button",
+            )
+            anti_spam_button.click()
+
+            
+
             time.sleep(5)
-        else:
-            time.sleep(1)
 
-        msg_input = driver.find_element(
-            By.XPATH,
-            "/html/body/div[2]/div[2]/div[1]/div[1]/div/div[2]/div/div/div/div/div[3]/div[2]/main/form/div/div[1]/div/div[3]/div/div",
-        )
-        msg_input.send_keys("-")
-        msg_input.send_keys(Keys.ENTER)
+            msg_input = driver.find_element(
+                By.XPATH,
+                "/html/body/div[2]/div[2]/div[1]/div[1]/div/div[2]/div/div/div/div/div[3]/div[2]/main/form/div/div[1]/div/div[3]/div/div",
+            )
+            msg_input.send_keys("*")
+            msg_input.send_keys(Keys.ENTER)
 
-    except:
-        pass
+        except:
+            pass
 
-    # Starts here
-    try:
-        msg_input = driver.find_element(
-            By.XPATH,
-            "/html/body/div[2]/div[2]/div[1]/div[1]/div/div[2]/div/div/div/div/div[3]/div[2]/main/form/div/div[1]/div/div[3]/div/div[2]",
-        )
+        # Starts here
+        try:
+            msg_input = driver.find_element(
+                By.XPATH,
+                "/html/body/div[2]/div[2]/div[1]/div[1]/div/div[2]/div/div/div/div/div[3]/div[2]/main/form/div/div[1]/div/div[3]/div/div[2]",
+            )
 
-        msg_input.send_keys("-")
-        msg_input.send_keys(Keys.ENTER)
+            msg_input.send_keys("*")
+            msg_input.send_keys(Keys.ENTER)
 
-    except:
-        pass
+        except:
+            pass
+
+        i += 1
+        print('Messages sent: ', i)
+
+    except(KeyboardInterrupt, SystemExit):
+        print("Interrupted")
+        driver.close()
+        driver.quit()
+        exit() 
+    
